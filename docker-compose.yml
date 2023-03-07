@@ -1,0 +1,17 @@
+version: "3.4"
+services:
+  earthquake:
+    container_name: earthquake
+    build: .
+    env_file:
+      - .env
+    environment:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_REGION: "${AWS_REGION}"
+      PLACE: "${PLACE}"
+      THRESHOLD: "${THRESHOLD}"
+      EMAIL_FROM: "${EMAIL_FROM}"
+      EMAIL_TO: "${EMAIL_TO}"
+      EMAIL_SUBJECT: "${EMAIL_SUBJECT}"
+    restart: always
