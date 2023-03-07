@@ -7,6 +7,7 @@ from utils.email import Email
 SOURCE = "http://www.koeri.boun.edu.tr/scripts/lst5.asp"
 PLACE = os.getenv("PLACE")
 THRESHOLD = int(os.getenv("THRESHOLD"))
+MIN_ML = float(os.getenv("ML"))
 EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_TO = os.getenv("EMAIL_TO").split(",")
 EMAIL_SUBJECT = os.getenv("EMAIL_SUBJECT")
@@ -33,7 +34,11 @@ def earthquake_follower():
 
     for line in earthquakes.text.splitlines():
         if line.find(PLACE) > -1:
-            related_earthquakes.append(line)
+
+            ml = float(line.split()[6])
+
+            if ml >= MIN_ML:
+                related_earthquakes.append(line)
 
     if len(related_earthquakes) >= THRESHOLD:
         html_build = """
@@ -49,3 +54,4 @@ def earthquake_follower():
 
 if __name__ == "__main__":
     schedule_actions()
+    # earthquake_follower() # for testing the function

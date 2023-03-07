@@ -35,6 +35,7 @@ export AWS_SECRET_ACCESS_KEY=
 export AWS_REGION=eu-central-1
 export PLACE="MARMARA DENIZI"
 export THRESHOLD=8
+export ML=3.4
 export EMAIL_FROM=
 export EMAIL_TO=
 export EMAIL_SUBJECT="Number of earthquakes exceeded the threshold value"
